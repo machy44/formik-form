@@ -4,29 +4,28 @@ import { withFormik, Form, Field } from "formik";
 import * as yup from "yup"; // for everything
 
 const App = ({ values, errors, touched, isSubmitting }) => {
-  console.log('errors', errors);
-  console.log('touched', touched);
-  return (<Form>
-    <div>
-      {touched.email && errors.email && <p>{errors.email}</p>}
-      <Field type="email" name="email" placeholder="Email" />
-    </div>
-    <div>
-      {touched.password && errors.password && <p>{errors.password}</p>}
-      <Field type="password" name="password" placeholder="Pasword" />
-    </div>
-    <label>
-      <Field type="checkbox" name="newsLetter" checked={values.newsLetter} />
-      Join our newsLetter
-    </label>
-    <Field component="select" name="plan">
-      <option value="free">Free</option>
-      <option value="premium">Premium</option>
-    </Field>
-    <button disabled={isSubmitting}>Submit</button>
-  </Form>
-);
-}
+  return (
+    <Form>
+      <div>
+        {touched.email && errors.email && <p>{errors.email}</p>}
+        <Field type="email" name="email" placeholder="Email" />
+      </div>
+      <div>
+        {touched.password && errors.password && <p>{errors.password}</p>}
+        <Field type="password" name="password" placeholder="Pasword" />
+      </div>
+      <label>
+        <Field type="checkbox" name="newsLetter" checked={values.newsLetter} />
+        Join our newsLetter
+      </label>
+      <Field component="select" name="plan">
+        <option value="free">Free</option>
+        <option value="premium">Premium</option>
+      </Field>
+      <button disabled={isSubmitting}>Submit</button>
+    </Form>
+  );
+};
 
 const FormikApp = withFormik({
   mapPropsToValues({ email, password, newsLetter, plan }) {
